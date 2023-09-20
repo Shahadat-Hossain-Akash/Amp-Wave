@@ -1,0 +1,100 @@
+.container {
+    padding: 0 6rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.left {
+    flex: 2;
+}
+.right {
+    flex: 1;
+}
+.wrapper {
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.title {
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+}
+.address {
+    padding: 1rem 0;
+    margin-right: 0.5rem;
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.input {
+    margin-right: 0.5rem;
+    accent-color: #E5FE72;
+}
+.addressContainer {
+    display: flex;
+
+    margin-bottom: 1rem;
+}
+.addressSelect:hover {
+    background-color: #f3ffbc;
+}
+.newAddress {
+    padding: 0;
+}
+.new, .back, .checkout {
+    padding: 0.75rem 3rem;
+    background-color: #f3ffbc;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.new:hover, .checkout:hover {
+    background-color: #E5FE72;
+}
+.back:hover{
+    opacity: 0.9;
+}
+.addressSelect {
+    transition: all 0.3s ease;
+    padding: 1rem;
+}
+.checkoutContainer{
+    padding: 2rem 0;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: flex-end;
+}
+.back{
+    color: white;
+    background-color: #131313;
+}
+.cartCheckout{
+    padding: 1rem;
+    width: 100%;
+    position: relative;
+}
+.total{
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    font-size: 1.35rem;
+}
+.bill{
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    font-size: 1.35rem;
+    background-color: #f3ffbc;
+    padding: 0.25rem 0;
+}
+.image{
+    object-fit: contain;
+}
+.cartWrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

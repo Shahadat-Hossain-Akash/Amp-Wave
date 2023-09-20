@@ -1,0 +1,48 @@
+.tableWrapper {
+    overflow-x: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    display: flex;
+    flex-direction: column;
+}
+.table tr{
+    transition: all .5s ease;
+}
+.table tr:hover{
+    background-color: #f3ffbc;
+}
+.table thead tr, .table tbody tr {
+    display: flex;
+}
+.table thead tr th, .table tbody tr td{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+.table td,
+.table th {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.buttonContainer {
+    display: flex;
+    gap: 1rem; 
+  }
+  
+  .buttonContainer button {
+    padding: .5rem 1.25rem;
+    background-color: #131313;
+    color: #f2f2f2;
+    border: none;
+    cursor: pointer;
+  }
+

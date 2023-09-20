@@ -1,0 +1,49 @@
+.container{
+    display: flex;
+    margin: 2.5rem 0;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.itemClass {
+    display: flex;
+    list-style: none;
+}
+.activeClass{
+    background-color: #E5FE72;
+}
+
+.innerClass{
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-family: 'nmr';
+    text-decoration: none;
+}
+.linkClass{
+    text-decoration: none;
+    color: #131313;
+    padding: 0.5rem .75rem;
+    transition:  .35s ease;
+}
+.linkClass:hover{
+    background-color: #f3ffbc;
+    border-bottom: 1px #E5FE72 solid;
+    transform: translateY(-0.25rem);
+}
+.disabledClass{
+    opacity: 0.75;
+    pointer-events: none;
+}
+@media screen and (min-width:360px) and (max-width:640px) {
+    .innerClass{
+        font-size: 1rem;
+    }
+    .linkClass{
+        padding: .25rem .5rem;
+    }
+}

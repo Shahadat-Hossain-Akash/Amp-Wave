@@ -1,0 +1,107 @@
+.product-container{
+    align-items: center;
+    display: flex;
+    padding: 0 6rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.product-card{
+    border: px solid #131313;
+    padding: 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: all .25s ease;
+}
+.product-card:hover{
+    background: #E5FE72;
+}
+.image-wrapper{
+    border: px solid #131313;
+    width: 23rem;
+    height: 17rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    background-color: white;
+}
+.image-wrapper:hover .product-image{
+    transform: scale(1.25);
+}
+.product-image{
+    transition: all 0.75s ;
+    object-fit: contain;
+}
+.product-price-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.product-rating{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #E5FE72;
+    font-size: 1.25rem;
+}
+.ratings-wrapper{
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+.pp-wrapper{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+.pp-wrapper :nth-child(1){
+    font-size: 1.5rem;
+    background-color: #E5FE72;
+}
+.pp-wrapper :nth-child(2){
+    font-size: 1rem;
+}
+.product-name{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    overflow-wrap: break-word;
+    max-width: 23rem;
+}
+.product-card .product-desc{
+    max-width: 23rem;
+    text-align: justify;
+    font-size: 0.85rem;
+    line-height: 1.25;
+    height: 3.25rem;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    color: #646464;
+}
+
+.product-button{
+    width: 100%;
+    padding: .5rem .5rem;
+    font-size: 1.35rem;
+    background-color: whitesmoke;
+    border: 0px solid #131313;
+    transition: all 0.25s ease-out;
+}
+.product-button:hover{
+    background-color: white;
+}
+@media screen and (min-width:360px) and (max-width:640px) {
+    .image-wrapper{
+        width: 19rem;
+        height: 19rem;
+    }
+    .product-desc{
+        max-width: 175rem;
+    }
+}

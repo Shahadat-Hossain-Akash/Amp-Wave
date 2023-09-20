@@ -1,0 +1,40 @@
+.container{
+    width: 100%;
+    margin-bottom: 4rem;
+    padding: 0 6rem;
+}
+.wrapper{
+    display: flex;
+    width: 100%;
+    background-color: #E5FE72;
+}
+.lists{
+    display: flex;
+    width: 100%;
+    list-style: none;
+    padding-left: 1rem;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.list{
+    display: flex;
+    align-items: center;
+    padding: .5rem 0rem;
+    font-size: 1.5rem;
+}
+.next{
+    transform: rotate(-90deg);
+    object-fit: contain;
+    margin-left: 1rem;
+    width: 25px;
+    height: 25px;
+}
+@media screen and (min-width:360px) and (max-width:640px) {
+    .container{
+        padding: 0 3rem;
+    }
+    .list{
+        font-size: 1.25rem;
+    }
+}

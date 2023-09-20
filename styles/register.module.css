@@ -1,0 +1,81 @@
+.container{
+        padding: 0 6rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+.logo{
+    font-size: 40rem;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;  /* position the top  edge of the element at the middle of the parent */
+    left: 50%;
+    color: #E5FE72;
+    opacity: .125;
+}
+.formContainer{
+    width: 100vw;
+    display: flex;
+    content: '';
+    background: rgba(255, 255, 255, 0.25);
+backdrop-filter: blur(13.5px);
+-webkit-backdrop-filter: blur(10.5px);
+    height: 40rem;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.form{
+    padding: 2rem;
+    width: 30vw;
+    max-width: 30vw;
+    display: flex;
+    z-index: 10;
+    flex-direction: column;
+    gap: 2rem;
+}
+.input{
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #efede959;
+    padding: 0.75rem 1.25rem;
+    font-size: 1.25rem;
+}
+.input:focus{
+    background-color: #f3ffbc;
+}
+.submit{
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #E5FE72;
+    padding: 0.75rem 1.25rem;
+    font-size: 1.5rem;
+    transition: all 1s ease;
+}
+.submit:hover,.login:hover{
+    transform: scale(1.05);
+}
+.otherAccount{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0rem;
+    gap: 1rem;
+}
+.account{
+    border: none;
+    outline: none;
+    font-size: 1.35rem;
+}
+.login{
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #E5FE72;
+    padding: 0.75rem 1.25rem;
+    font-size: 1.5rem;
+    transition: all 1s ease;
+}
