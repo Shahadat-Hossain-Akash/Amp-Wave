@@ -1,6 +1,6 @@
 import Product from '../models/product'
 import APIFilters from '../utils/APIFilters'
-import {cloudinary, uploadFileToCloudinary} from '../utils/cloudinary'
+import { cloudinary, uploadFileToCloudinary } from '../utils/cloudinary'
 import fs from 'fs'
 
 export const newProduct = async (req, res, next) => {
@@ -9,7 +9,7 @@ export const newProduct = async (req, res, next) => {
     const product = await Product.create(req.body)
     res
         .status(201)
-        .json({product})
+        .json({ product })
 }
 
 export const getProducts = async (req, res, next) => {
@@ -22,7 +22,7 @@ export const getProducts = async (req, res, next) => {
     const filteredProductsCount = products
         .length
 
-        apiFilters
+    apiFilters
         .pagination(resPerPage)
 
     products = await apiFilters
@@ -31,7 +31,7 @@ export const getProducts = async (req, res, next) => {
 
     res
         .status(200)
-        .json({productsCount, resPerPage, filteredProductsCount, products})
+        .json({ productsCount, resPerPage, filteredProductsCount, products })
 }
 
 export const getSingleProduct = async (req, res, next) => {
@@ -39,11 +39,11 @@ export const getSingleProduct = async (req, res, next) => {
     if (!product) {
         res
             .status(404)
-            .json({error: "Product not found"})
+            .json({ error: "Product not found" })
     }
     res
         .status(200)
-        .json({product})
+        .json({ product })
 }
 
 export const uploadProductImages = async (req, res, next) => {
@@ -52,7 +52,7 @@ export const uploadProductImages = async (req, res, next) => {
     if (!product) {
         res
             .status(404)
-            .json({error: "Product not found"})
+            .json({ error: "Product not found" })
     }
 
     const uploader = async (path) => await uploadFileToCloudinary(
@@ -65,17 +65,17 @@ export const uploadProductImages = async (req, res, next) => {
     const files = req.files
 
     for (const file of files) {
-        const {path} = file
+        const { path } = file
         const imgUrl = await uploader(path)
         urls.push(imgUrl)
         fs.unlinkSync(path)
     }
 
-    product = await Product.findByIdAndUpdate(req.query.id, {images: urls})
+    product = await Product.findByIdAndUpdate(req.query.id, { images: urls })
 
     res
         .status(200)
-        .json({data: urls, product})
+        .json({ data: urls, product })
 
 }
 
@@ -86,14 +86,14 @@ export const updateProduct = async (req, res, next) => {
     if (!product) {
         res
             .status(404)
-            .json({error: "Product not found"})
+            .json({ error: "Product not found" })
     }
 
     product = await Product.findByIdAndUpdate(req.query.id, req.body)
 
     res
         .status(200)
-        .json({product})
+        .json({ product })
 
 }
 
@@ -104,7 +104,7 @@ export const deleteProduct = async (req, res, next) => {
     if (!product) {
         res
             .status(404)
-            .json({error: "Product not found"})
+            .json({ error: "Product not found" })
     }
 
     for (let i = 0; i < product.images.length; i++) {
@@ -118,13 +118,13 @@ export const deleteProduct = async (req, res, next) => {
 
     res
         .status(200)
-        .json({success: true})
+        .json({ success: true })
 
 }
 
 export const createProductReview = async (req, res, next) => {
 
-    const {comment, rating, productId, userName, userAvatar} = req.body
+    const { comment, rating, productId, userName, userAvatar } = req.body
 
     console.log(req.body)
 
@@ -143,32 +143,32 @@ export const createProductReview = async (req, res, next) => {
     if (!product) {
         res
             .status(404)
-            .json({error: "Product not found"})
+            .json({ error: "Product not found" })
     }
 
     const isReviewed = product?.reviews?.find(
         (r) => r.user === req.user._id
-      );
-    
-      if (isReviewed) {
+    );
+
+    if (isReviewed) {
         product?.reviews.forEach((review) => {
-          if (review.user === req.user._id) {
-            review.comment = comment;
-            review.rating = rating;
-            review.userName = userName
-            review.userAvatar = userAvatar
-          }
+            if (review.user === req.user._id) {
+                review.comment = comment;
+                review.rating = rating;
+                review.userName = userName
+                review.userAvatar = userAvatar
+            }
         });
-      } else {
+    } else {
         product?.reviews.push(review);
-      }
+    }
     product.ratings = product?.reviews?.reduce((acc, item) => item.rating + acc, 0) / product?.reviews.length
-    
+
 
     await product?.save();
 
     res
         .status(200)
-        .json({success: true})
+        .json({ success: true })
 
 }

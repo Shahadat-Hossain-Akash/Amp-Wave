@@ -8,19 +8,20 @@ import CustomPagination from '../pagination/CustomPagination'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ListProducts = ({data}) => {
-    console.log(data)
+const ListProducts = ({ data }) => {
     return (
         <main >
-        <div className='product-container'>
-        {data?.products?.map(product =>(
-            <ProductItem key={product?._id} product={product}/>
-        ))}
+            <div className='product-container'>
+                {data?.products?.map(product => (
+                    <>
+                        < ProductItem key={product?._id} product={product} />
+                    </>
+                ))}
 
-        </div>
-        <CustomPagination resPerPage={data?.resPerPage} productsCount={data?.filteredProductsCount}/>
-        <ToastContainer theme='dark'/>
-    </main>
+            </div>
+            <CustomPagination resPerPage={data?.resPerPage} productsCount={data?.filteredProductsCount} />
+            <ToastContainer theme='dark' />
+        </main>
     )
 }
 

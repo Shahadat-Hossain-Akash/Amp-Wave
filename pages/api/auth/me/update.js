@@ -5,13 +5,6 @@ import upload from '@/backend/utils/multer';
 import { isAuthenticated } from '@/backend/middlewares/auth';
 import dbConnect from '@/backend/config/dbConnect';
 
-//const router = createRouter()
-
-//dbConnect()
-
-//router.post(registerUser)
-
-//export default router.handler({onError})
 
 const handler = nc({ onError });
 

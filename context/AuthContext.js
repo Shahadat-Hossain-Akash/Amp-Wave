@@ -1,26 +1,25 @@
 'use client'
 
 import axios from "axios"
-import {useRouter} from "next/navigation"
-import {createContext, useState, useEffect} from "react"
-import {ToastContainer, toast} from "react-toastify"
+import { useRouter } from "next/navigation"
+import { createContext, useState, useEffect } from "react"
+import { ToastContainer, toast } from "react-toastify"
 
 const AuthContext = createContext()
 
-export const AuthProvider = ({children}) => {
+export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [error, setError] = useState(null)
     const [updated, setUpdated] = useState(false)
     const [loading, setLoading] = useState(false)
     const router = useRouter()
 
-    console.log(user)
 
-    const registerUser = async ({name, email, password}) => {
+    const registerUser = async ({ name, email, password }) => {
         try {
-            const {data} = await axios.post(
+            const { data } = await axios.post(
                 `${process.env.API_URL}/api/auth/register`,
-                {name, email, password}
+                { name, email, password }
             )
             if (
                 data
@@ -32,8 +31,8 @@ export const AuthProvider = ({children}) => {
             setError(
                 error
                     ?.response
-                        ?.data
-                            ?.message
+                    ?.data
+                    ?.message
             )
         }
     }
@@ -41,7 +40,7 @@ export const AuthProvider = ({children}) => {
     const updateProfile = async (formData) => {
         setLoading(true)
         try {
-            const {data} = await axios.put(
+            const { data } = await axios.put(
                 `${process.env.API_URL}/api/auth/me/update`,
                 formData,
                 {
@@ -65,16 +64,16 @@ export const AuthProvider = ({children}) => {
             setError(
                 error
                     ?.response
-                        ?.data
-                            ?.message
+                    ?.data
+                    ?.message
             )
         }
     }
-    const updatePassword = async ({currentPassword, newPassword}) => {
+    const updatePassword = async ({ currentPassword, newPassword }) => {
         try {
-            const {data} = await axios.put(
+            const { data } = await axios.put(
                 `${process.env.API_URL}/api/auth/me/update_password`,
-                {currentPassword, newPassword}
+                { currentPassword, newPassword }
             )
             if (
                 data
@@ -89,16 +88,16 @@ export const AuthProvider = ({children}) => {
             setError(
                 error
                     ?.response
-                        ?.data
-                            ?.message
+                    ?.data
+                    ?.message
             )
         }
     }
 
     const updateUser = async (id, userData) => {
         try {
-            const {data} = await axios.put(
-                `${process.env.API_URL}/api/admin/users/${id}`, {userData})
+            const { data } = await axios.put(
+                `${process.env.API_URL}/api/admin/users/${id}`, { userData })
             if (
                 data
                     ?.success
@@ -112,15 +111,15 @@ export const AuthProvider = ({children}) => {
             setError(
                 error
                     ?.response
-                        ?.data
-                            ?.message
+                    ?.data
+                    ?.message
             )
         }
     }
 
     const deleteUser = async (id) => {
         try {
-            const {data} = await axios.delete(
+            const { data } = await axios.delete(
                 `${process.env.API_URL}/api/admin/users/${id}`)
             if (
                 data
@@ -135,15 +134,15 @@ export const AuthProvider = ({children}) => {
             setError(
                 error
                     ?.response
-                        ?.data
-                            ?.message
+                    ?.data
+                    ?.message
             )
         }
     }
 
     const loadUser = async () => {
         try {
-            const {data} = await axios.get(
+            const { data } = await axios.get(
                 `${process.env.API_URL}/api/auth/session?update`,
 
             )
@@ -160,15 +159,15 @@ export const AuthProvider = ({children}) => {
             setError(
                 error
                     ?.response
-                        ?.data
-                            ?.message
+                    ?.data
+                    ?.message
             )
         }
     }
 
     const addNewAddress = async (address) => {
         try {
-            const {data} = await axios.post(`${process.env.API_URL}/api/address`, address)
+            const { data } = await axios.post(`${process.env.API_URL}/api/address`, address)
             if (data) {
                 router.push('/me')
             }
@@ -176,15 +175,15 @@ export const AuthProvider = ({children}) => {
             setError(
                 error
                     ?.response
-                        ?.data
-                            ?.message
+                    ?.data
+                    ?.message
             )
         }
     }
 
     const updateAddress = async (id, address) => {
         try {
-            const {data} = await axios.put(
+            const { data } = await axios.put(
                 `${process.env.API_URL}/api/address/${id}`,
                 address
             )
@@ -199,15 +198,15 @@ export const AuthProvider = ({children}) => {
             setError(
                 error
                     ?.response
-                        ?.data
-                            ?.message
+                    ?.data
+                    ?.message
             )
         }
     }
 
     const deleteAddress = async (id) => {
         try {
-            const {data} = await axios.delete(`${process.env.API_URL}/api/address/${id}`)
+            const { data } = await axios.delete(`${process.env.API_URL}/api/address/${id}`)
             if (
                 data
                     ?.success
@@ -218,8 +217,8 @@ export const AuthProvider = ({children}) => {
             setError(
                 error
                     ?.response
-                        ?.data
-                            ?.message
+                    ?.data
+                    ?.message
             )
         }
     }
