@@ -1,22 +1,30 @@
 import UpdateProduct from '@/components/admin/UpdateProduct'
 import React from 'react'
 import axios from 'axios'
+import { redirect } from 'next/navigation'
+import mongoose from 'mongoose'
 
 const getProducts = async (id) => {
 
-    const {data} = await axios.get(
+    const { data } = await axios.get(
         `${process.env.API_URL}/api/products/${id}`
     )
     return data
 }
 
-const UpdateProductPage = async ({params}) => {
+const HomePage = async ({ params }) => {
 
-    const data = await getProducts(params.id)
+    const isValid = mongoose.isValidObjectId(params?.id);
 
-    return (<> <UpdateProduct data = {
+    if (!isValid) {
+        return redirect("/");
+    }
+
+    const data = await getProducts(params?.id)
+
+    return (<> <UpdateProduct data={
         data.product
     } /> </>)
 }
 
-export default UpdateProductPage
+export default HomePage

@@ -5,8 +5,8 @@ import Link from 'next/link';
 import CustomPagination from '../pagination/CustomPagination';
 import ProductContext from '@/context/ProductContext';
 
-const Products = ({data}) => {
-    const {deleteProduct} = useContext(ProductContext)
+const Products = ({ data }) => {
+    const { deleteProduct } = useContext(ProductContext)
 
     const deleteHandler = (id) => {
         deleteProduct(id)
@@ -27,35 +27,35 @@ const Products = ({data}) => {
                     {
                         data?.products?.map((item, index) => (
                             <tr key={index}>
-                                <td>{item.name}</td>
-                                <td>{item.stock}</td>
-                                <td>{item.price}</td>
+                                <td>{item?.name}</td>
+                                <td>{item?.stock}</td>
+                                <td>{item?.price}</td>
                                 <td>
                                     <div className={styles.buttonContainer}>
                                         <Link
                                             href={`/admin/products/${item?._id}/upload_images`}
                                             style={{
-                                                "textDecoration" : "none",
-                                                "color" : 'inherit'
+                                                "textDecoration": "none",
+                                                "color": 'inherit'
                                             }}>
                                             <button>Upload images</button>
                                         </Link>
                                         <Link
                                             href={`/admin/products/${item?._id}`}
                                             style={{
-                                                "textDecoration" : "none",
-                                                "color" : 'inherit'
+                                                "textDecoration": "none",
+                                                "color": 'inherit'
                                             }}>
                                             <button>Edit</button>
                                         </Link>
                                         <Link
                                             href={'/admin/products/'}
                                             style={{
-                                                "textDecoration" : "none",
-                                                "color" : 'inherit'
+                                                "textDecoration": "none",
+                                                "color": 'inherit'
                                             }}
                                             onClick={() => deleteHandler(item?._id)}
-                                            >
+                                        >
                                             <button>Delete</button>
                                         </Link>
 
@@ -66,7 +66,7 @@ const Products = ({data}) => {
                     }
                 </tbody>
             </table>
-            <CustomPagination resPerPage={data?.resPerPage} productsCount={data?.filteredProductsCount}/>
+            <CustomPagination resPerPage={data?.resPerPage} productsCount={data?.filteredProductsCount} />
         </div>
     )
 }
