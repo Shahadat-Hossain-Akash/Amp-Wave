@@ -7,12 +7,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-/**
- * Uploads a file to Cloudinary.
- * @param {string} file - The path to the file to be uploaded.
- * @param {string} folder - The folder within Cloudinary where the file will be stored.
- * @returns {Promise<{ public_id: string, url: string }>} - A promise that resolves to an object containing the public_id and URL of the uploaded file.
- */
 const uploadFileToCloudinary = (file, folder) => {
   return new Promise((resolve, reject) => {
     cloudinary.uploader.upload(

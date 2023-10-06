@@ -1,10 +1,8 @@
 import mongoose from 'mongoose'
 
-import React from 'react'
-
 const dbConnect = () => {
 
-    if(mongoose.connection.readyState >= 1){
+    if (mongoose.connection.readyState >= 1) {
         return
     }
 

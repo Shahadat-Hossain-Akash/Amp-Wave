@@ -1,4 +1,4 @@
-'use client'
+
 import CartBreadcrumbs from "@/components/Breadcrumbs/CartBreadcrumbs";
 import Sidebar from "@/components/sidebar/Sidebar";
 import React from 'react'
@@ -8,15 +8,15 @@ import Address from "@/components/address/Address";
 
 const NewAddress = () => {
   return (
-    <> <CartBreadcrumbs cartbreadcrumbs = {
-        "User dashboard"
+    <> <CartBreadcrumbs cartbreadcrumbs={
+      "User dashboard"
     } /> <section className={styles.container}>
-        <Sidebar/>
+        <Sidebar />
         <div className={styles.header}>
-            <Address/>
+          <Address />
         </div>
-    </section>
-</>
+      </section>
+    </>
   )
 }
 

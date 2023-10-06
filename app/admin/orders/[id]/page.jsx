@@ -1,29 +1,30 @@
 
 import axios from 'axios'
 import React from 'react'
-import {cookies} from 'next/headers'
+import { cookies } from 'next/headers'
 import UpdateOrder from '@/components/admin/UpdateOrder';
+import { getCookieName } from '@/helpers/helpers';
 
 const getOrder = async (id) => {
     const nextCookies = cookies();
+    const cookieName = getCookieName()
+    const nextAuthSessionToken = nextCookies.get(cookieName);
 
-    const nextAuthSessionToken = nextCookies.get("next-auth.session-token");
 
-
-    const {data} = await axios.get(`${process.env.API_URL}/api/admin/orders/${id}`, {
+    const { data } = await axios.get(`${process.env.API_URL}/api/admin/orders/${id}`, {
         headers: {
-            Cookie: `next-auth.session-token=${nextAuthSessionToken
+            Cookie: `${nextAuthSessionToken.name}=${nextAuthSessionToken
                 ?.value}`
         }
     });
-    
+
     return data;
 };
 
-const AdminOrderDetailsPage = async ({params}) => {
+const AdminOrderDetailsPage = async ({ params }) => {
     const data = await getOrder(params?.id)
     console.log(data)
-    return (<UpdateOrder order={data?.order}/>)
+    return (<UpdateOrder order={data?.order} />)
 }
 
 export default AdminOrderDetailsPage

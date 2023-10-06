@@ -4,13 +4,6 @@ import onError from '@/backend/middlewares/errors'
 import { authorizeRole, isAuthenticated } from '@/backend/middlewares/auth';
 import { newProduct } from '@/backend/controllers/productController';
 
-//const router = createRouter()
-
-//dbConnect()
-
-//router.post(registerUser)
-
-//export default router.handler({onError})
 
 const handler = nc({ onError });
 

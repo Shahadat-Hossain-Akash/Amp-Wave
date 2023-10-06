@@ -5,15 +5,6 @@ import nc from 'next-connect'
 import onError from '@/backend/middlewares/errors'
 
 
-//const router = createRouter()
-
-//dbConnect()
-//router.get(getAddresses)
-//router.get(getAddress)
-//router.post(newAddress)
-
-//export default router.handler({onError})
-
 const handler = nc({ onError });
 
 dbConnect();
