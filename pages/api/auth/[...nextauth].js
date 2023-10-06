@@ -9,53 +9,57 @@ export default async function auth(req, res) {
         session: {
             strategy: 'jwt'
         },
-        providers: [Credentials({
+        providers: [
+            CredentialsProvider({
                 async authorize(credentials, req) {
-                    dbConnect()
+                    dbConnect();
 
-                    const {email, password} = credentials
+                    const { email, password } = credentials;
 
-                    const user = await User
-                        .findOne({email})
-                        .select('+password')
+                    const user = await User.findOne({ email }).select("+password");
 
                     if (!user) {
-                        throw new Error("Invalid Email or Password")
+                        throw new Error("Invalid Email or Password");
                     }
 
-                    const authenticated = await bcrypt.compare(password, user.password)
+                    const isPasswordMatched = await bcrypt.compare(
+                        password,
+                        user.password
+                    );
 
-                    if (!authenticated) {
-                        throw new Error("Invalid Email or Password")
+                    if (!isPasswordMatched) {
+                        throw new Error("Invalid Email or Password");
                     }
 
-                    return user
+                    return user;
+                },
+            }),
+        ],
+        callbacks: {
+            jwt: async ({ token, user }) => {
+                user && (token.user = user);
+
+                if (req.url === "/api/auth/session?update") {
+
+                    const updatedUser = await User.findById(token.user._id);
+                    token.user = updatedUser;
                 }
-            })],
-            callbacks:{
-                async jwt({ token, user,}) {
-                    user && (
-                        token.user = user
-                    )
 
-                    if(req.url === '/api/auth/session?update'){
-                        const updatedUser = await User.findById(token.user._id)
-                        token.user = updatedUser
-                    }
-                    return token
-                  },
-                  async session({ session, token,}) {
-                        session.user = token.user
-
-                        delete session?.user.password
-
-                    return session
-                  },
+                return token;
             },
-            pages:{
-                signIn: '/login',
+            session: async ({ session, token }) => {
+                session.user = token.user;
 
+                // delete password from session
+                delete session?.user?.password;
+
+                return session;
             },
-            secret: process.env.NEXTAUTH_SECRET
+        },
+        pages: {
+            signIn: '/login',
+
+        },
+        secret: process.env.NEXTAUTH_SECRET
     })
 }

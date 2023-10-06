@@ -9,7 +9,6 @@
     gap: 2rem;
 }
 .product-card{
-    border: px solid #131313;
     padding: 1.5rem 1.5rem;
     display: flex;
     flex-direction: column;
@@ -19,7 +18,6 @@
     background: #E5FE72;
 }
 .image-wrapper{
-    border: px solid #131313;
     width: 23rem;
     height: 17rem;
     display: flex;
@@ -90,7 +88,6 @@
     padding: .5rem .5rem;
     font-size: 1.35rem;
     background-color: whitesmoke;
-    border: 0px solid #131313;
     transition: all 0.25s ease-out;
 }
 .product-button:hover{
