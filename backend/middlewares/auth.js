@@ -1,8 +1,9 @@
 import { getSession } from "next-auth/react"
 import ErrorHandler from "../utils/errorHandler"
+import { getServerSession } from "next-auth/next";
 
 const isAuthenticated = async (req, res, next) => {
-    const session = await getSession({ req })
+    const session = await getServerSession({ req })
 
     if (!session) {
         return next(new ErrorHandler("Login first to access this route", 401));

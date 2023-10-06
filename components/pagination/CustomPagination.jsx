@@ -4,49 +4,50 @@ import styles from '../../styles/pagination.module.css'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Pagination from "react-js-pagination";
 
-const CustomPagination = ({resPerPage, productsCount}) => {
-    const router = useRouter()
-    const searchParams = useSearchParams()
+const CustomPagination = ({ resPerPage, productsCount }) => {
+  const router = useRouter()
+  const isBrowser = typeof window !== 'undefined';
+  const searchParams = useSearchParams()
 
-    let page = searchParams.get('page') || 1
-    page = Number(page)
+  let page = searchParams.get('page') || 1
+  page = Number(page)
 
-    let queryParams
+  let queryParams
 
-    const handleChange = (currentPage) => {
-        if(typeof window !== 'undefined' ){
+  const handleChange = (currentPage) => {
+    if (isBrowser) {
 
-            const queryParams = new URLSearchParams(window.location.search)
+      const queryParams = new URLSearchParams(window.location.search)
 
-            if(queryParams.has('page')){
-                queryParams.set('page', currentPage)
-            } else{
-                queryParams.append('page', currentPage)
-            }
+      if (queryParams.has('page')) {
+        queryParams.set('page', currentPage)
+      } else {
+        queryParams.append('page', currentPage)
+      }
 
-            const path = window.location.pathname+'?'+queryParams.toString()
-            console.log(path)
-            router.push(path)
-        }
+      const path = window.location.pathname + '?' + queryParams.toString()
+      console.log(path)
+      router.push(path)
     }
+  }
   return (
     <div className={styles.container}>
       <Pagination
-          activePage={page}
-          itemsCountPerPage={resPerPage}
-          totalItemsCount={productsCount}
-          onChange={handleChange}
-          nextPageText={'Next'}
-          prevPageText={'Prev'}
-          firstPageText={'First'}
-          lastPageText={'Last'}
-          itemClass={styles.itemClass}
-          activeClass={styles.activeClass}
-          activeLinkClass={styles.activeLinkClass}
-          innerClass={styles.innerClass}
-          linkClass={styles.linkClass}
-          disabledClass={styles.disabledClass}
-        />
+        activePage={page}
+        itemsCountPerPage={resPerPage}
+        totalItemsCount={productsCount}
+        onChange={handleChange}
+        nextPageText={'Next'}
+        prevPageText={'Prev'}
+        firstPageText={'First'}
+        lastPageText={'Last'}
+        itemClass={styles.itemClass}
+        activeClass={styles.activeClass}
+        activeLinkClass={styles.activeLinkClass}
+        innerClass={styles.innerClass}
+        linkClass={styles.linkClass}
+        disabledClass={styles.disabledClass}
+      />
     </div>
   )
 }

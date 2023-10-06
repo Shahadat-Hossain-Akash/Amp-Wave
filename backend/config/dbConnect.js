@@ -1,15 +1,18 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
-const dbConnect = () => {
-
+const dbConnect = async () => {
     if (mongoose.connection.readyState >= 1) {
-        return
+        return;
     }
 
     mongoose.set("strictQuery", false);
 
-    mongoose.connect(process.env.DB_URI)
+    try {
+        await mongoose.connect(process.env.DB_URI);
+        console.log("Connected to MongoDB!");
+    } catch (error) {
+        console.error("Error connecting to MongoDB:", error);
+    }
+};
 
-}
-
-export default dbConnect
+export default dbConnect;

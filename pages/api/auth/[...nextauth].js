@@ -1,11 +1,12 @@
-import NextAuth from "next-auth/next";
-import Credentials from "next-auth/providers/credentials";
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 import User from '@/backend/models/user'
 import bcrypt from 'bcryptjs'
 import dbConnect from "@/backend/config/dbConnect";
 
 export default async function auth(req, res) {
     return await NextAuth(req, res, {
+        secret: process.env.NEXTAUTH_SECRET,
         session: {
             strategy: 'jwt'
         },
@@ -60,6 +61,6 @@ export default async function auth(req, res) {
             signIn: '/login',
 
         },
-        secret: process.env.NEXTAUTH_SECRET
+
     })
 }

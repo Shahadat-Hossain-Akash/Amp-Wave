@@ -89,6 +89,7 @@
     font-size: 1.35rem;
     background-color: whitesmoke;
     transition: all 0.25s ease-out;
+    border: none;
 }
 .product-button:hover{
     background-color: white;

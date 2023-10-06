@@ -1,17 +1,17 @@
 import User from "../models/user";
-import {uploadFileToCloudinary} from "../utils/cloudinary";
+import { uploadFileToCloudinary } from "../utils/cloudinary";
 import fs from 'fs'
 import bcrypt from 'bcryptjs'
 import APIFilters from '../utils/APIFilters';
 import ErrorHandler from '../utils/errorHandler';
 
 export const registerUser = async (req, res) => {
-    const {name, email, password} = req.body
+    const { name, email, password } = req.body
 
-    const user = await User.create({name, email, password})
+    const user = await User.create({ name, email, password })
     res
         .status(201)
-        .json({user})
+        .json({ user })
 }
 
 export const updateProfile = async (req, res) => {
@@ -27,7 +27,7 @@ export const updateProfile = async (req, res) => {
         )
 
         const file = req.files[0]
-        const {path} = file
+        const { path } = file
 
         const avatarResponse = await uploader(path)
         fs.unlinkSync(path)
@@ -38,7 +38,7 @@ export const updateProfile = async (req, res) => {
     const user = await User.findByIdAndUpdate(req.user._id, newUpdatedUser)
     res
         .status(200)
-        .json({user})
+        .json({ user })
 }
 
 export const updatePassword = async (req, res) => {
@@ -61,11 +61,11 @@ export const updatePassword = async (req, res) => {
     user.password = req
         .body
         .newPassword
-        await user
+    await user
         .save()
     res
         .status(200)
-        .json({success: true})
+        .json({ success: true })
 }
 
 export const getUsers = async (req, res) => {
@@ -77,9 +77,9 @@ export const getUsers = async (req, res) => {
     const users = await apiFilter
         .query
 
-        res
+    res
         .status(200)
-        .json({users, resPerPage, usersCount})
+        .json({ usersCount, resPerPage, users })
 }
 
 export const getUser = async (req, res) => {
@@ -90,7 +90,7 @@ export const getUser = async (req, res) => {
     }
     res
         .status(200)
-        .json({success: true, user})
+        .json({ success: true, user })
 }
 
 export const updateUser = async (req, res) => {
@@ -105,7 +105,7 @@ export const updateUser = async (req, res) => {
 
     res
         .status(200)
-        .json({success: true, user})
+        .json({ success: true, user })
 }
 
 export const deleteUser = async (req, res) => {
@@ -120,5 +120,5 @@ export const deleteUser = async (req, res) => {
 
     res
         .status(200)
-        .json({success: true})
+        .json({ success: true })
 }
