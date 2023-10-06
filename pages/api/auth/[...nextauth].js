@@ -12,8 +12,11 @@ export default async function auth(req, res) {
         },
         providers: [
             CredentialsProvider({
-                async authorize(credentials, req) {
-                    dbConnect();
+                name: 'credentials',
+                credentials: {},
+                async authorize(credentials) {
+
+                    await dbConnect();
 
                     const { email, password } = credentials;
 

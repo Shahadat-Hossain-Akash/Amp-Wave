@@ -1,24 +1,24 @@
 'use client'
-import {AuthProvider} from "@/context/AuthContext";
-import {CartProvider} from "@/context/CartContext";
-import {OrderProvider} from "@/context/OrderContext";
-import {ProductProvider} from "@/context/ProductContext";
-import {SessionProvider} from "next-auth/react";
-import {ToastContainer} from "react-toastify";
+import { AuthProvider } from "@/context/AuthContext";
+import { CartProvider } from "@/context/CartContext";
+import { OrderProvider } from "@/context/OrderContext";
+import { ProductProvider } from "@/context/ProductContext";
+import { SessionProvider } from "next-auth/react";
+import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-export function GlobalProvider({children}) {
+export function GlobalProvider({ children }) {
     return (
-        <> < ToastContainer theme = 'dark' /> <AuthProvider >
+        <> < ToastContainer theme='dark' /> <AuthProvider >
             <CartProvider>
                 <OrderProvider>
                     <ProductProvider>
-                        <SessionProvider>{children}</SessionProvider>
+                        <SessionProvider >{children}</SessionProvider>
                     </ProductProvider>
                 </OrderProvider>
             </CartProvider>
         </AuthProvider>
 
-    </>
+        </>
     )
 }
